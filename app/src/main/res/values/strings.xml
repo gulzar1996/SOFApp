@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">OverFlowSearch</string>
+    <string name="hint">Questions ?</string>
 </resources>
