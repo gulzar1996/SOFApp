@@ -7,17 +7,16 @@ import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "question")
 data class Question(
-        @SerializedName("tags") val tags: List<String>,
         @Ignore
-        @SerializedName("owner") val owner: Owner,
-        @SerializedName("is_answered") val isAnswered: Boolean,
-        @SerializedName("view_count") val viewCount: Int,
-        @SerializedName("answer_count") val answerCount: Int,
-        @SerializedName("score") val score: Int,
-        @SerializedName("creation_date") val creationDate: Int,
-        @SerializedName("question_id") val questionId: Int,
-        @SerializedName("link") val link: String,
-        @SerializedName("title") val title: String
+        @SerializedName("owner") var owner: Author? = null,
+        @SerializedName("is_answered") var isAnswered: Boolean = false,
+        @SerializedName("view_count") var viewCount: Int = 0,
+        @SerializedName("answer_count") var answerCount: Int = 0,
+        @SerializedName("score") var score: Int = 0,
+        @SerializedName("creation_date") var creationDate: Int = 0,
+        @SerializedName("question_id") var questionId: Int = 0,
+        @SerializedName("link") var link: String? = null,
+        @SerializedName("title") var title: String? = null
 ) {
     /**
      * Im not storing question Id as primary key because
@@ -30,7 +29,7 @@ data class Question(
      * Okay all the Query should be hashed and stored and
      * All the questions for a particular search term will be based on hashed question Query
      */
-    var questionQuery = null
+    var questionQuery = ""
     /**
      * This is used to preserve the question order
      */
@@ -39,8 +38,9 @@ data class Question(
      * All the object should be appended with hasMore which is used during boundary call back
      */
     var hasMore: Boolean = false
+    var nextPage: Int = 0
     /**
-     * Since its not wise to store the Owner object in Sql
+     * Since its not wise to store the Author object in Sql
      * Resolve it and store as string so that it is visible in a single question query
      */
     var authorName: String = ""
