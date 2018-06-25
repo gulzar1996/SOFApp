@@ -1,5 +1,6 @@
 package github.gulzar1996.overflowsearch.data.remote
 
+import github.gulzar1996.overflowsearch.data.model.answer.AnswerSearch
 import github.gulzar1996.overflowsearch.data.model.search.QuestionSearch
 import io.reactivex.Single
 import retrofit2.Response
@@ -19,13 +20,15 @@ interface SOFApi {
             @Query("site") site: String
     ): Single<Response<QuestionSearch>>
 
-    @GET("/questions/{questionId}/answers")
+    @GET("questions/{questionId}/answers")
     fun getAnswers(
             @Path("questionId") questionId: String,
+            @Query("page") page: String,
+            @Query("pagesize") pagesize: String,
             @Query("order") order: String,
             @Query("sort") sort: String,
             @Query("site") site: String,
             @Query("filter") filter: String
-    )
+    ): Single<Response<AnswerSearch>>
 
 }
