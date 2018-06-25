@@ -9,4 +9,6 @@ object Const {
     const val SORT = "activity"
     const val ORDER = "desc"
     const val SITE = "stackoverflow"
+
+    const val ANSWER_FILTER = "!-*jbN.OXKfDP"
 }
