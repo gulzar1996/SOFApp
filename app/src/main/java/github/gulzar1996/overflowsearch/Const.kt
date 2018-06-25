@@ -11,4 +11,5 @@ object Const {
     const val SITE = "stackoverflow"
 
     const val ANSWER_FILTER = "!-*jbN.OXKfDP"
+    const val QUESTION_ID = "QUESTION_ID"
 }
