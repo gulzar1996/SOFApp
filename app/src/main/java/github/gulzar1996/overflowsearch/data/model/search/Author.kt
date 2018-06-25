@@ -1,4 +1,4 @@
-package github.gulzar1996.overflowsearch.data
+package github.gulzar1996.overflowsearch.data.model.search
 
 import com.google.gson.annotations.SerializedName
 
