@@ -9,14 +9,15 @@ import github.gulzar1996.overflowsearch.R
 import github.gulzar1996.overflowsearch.data.model.search.Question
 import github.gulzar1996.overflowsearch.ui.common.NetworkViewHolder
 
-class QuestionSearchAdapter(val retryCallback: () -> Unit)
+class QuestionSearchAdapter(private val retryCallback: () -> Unit
+                            , private val itemClick: (String) -> Unit)
     : PagedListAdapter<Question, RecyclerView.ViewHolder>(UserDiffCallback) {
 
     private var networkState: NetworkState? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            R.layout.item_question -> QuestionViewHolder.create(parent)
+            R.layout.item_question -> QuestionViewHolder.create(parent, itemClick)
             R.layout.item_networkstate -> NetworkViewHolder.create(parent, retryCallback)
             else -> throw IllegalArgumentException("unknown view type")
         }

@@ -32,7 +32,7 @@ class QuestionSearchRepository
     private fun insertResultIntoDb(questionQuery: String, body: QuestionSearch?, pageCount: Int) {
 
         val hashedQuestionQuery = questionQuery.toMd5Hash()
-
+        Log.d("QuestionSearch","Hash : $hashedQuestionQuery")
         body!!.questions.let { questions ->
             db.runInTransaction {
                 val start = db.question().getNextIndexInQuestion(hashedQuestionQuery)

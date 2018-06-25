@@ -2,14 +2,17 @@ package github.gulzar1996.overflowsearch.ui.question
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import dagger.android.AndroidInjection
+import github.gulzar1996.overflowsearch.Const
 import github.gulzar1996.overflowsearch.NetworkState
 import github.gulzar1996.overflowsearch.R
 import github.gulzar1996.overflowsearch.data.local.question.IQuestionSearchRepository
+import github.gulzar1996.overflowsearch.ui.answer.AnswerActivity
 import github.gulzar1996.overflowsearch.ui.question.adapter.QuestionSearchAdapter
 import github.gulzar1996.overflowsearch.ui.question.viewmodel.QuestionSearchViewModel
 import github.gulzar1996.overflowsearch.ui.question.viewmodel.QuestionSearchViewModelFactory
@@ -32,7 +35,16 @@ class QuestionSearchActivity : AppCompatActivity() {
         initAdapter()
         initInput()
         initSwipeToRefresh()
+        initNavigation()
 
+    }
+
+    private fun initNavigation() {
+        viewModel.navigateTrigger.observe(this, Observer {
+            val i = Intent(this@QuestionSearchActivity, AnswerActivity::class.java)
+            i.putExtra(Const.QUESTION_ID, it)
+            startActivity(i)
+        })
     }
 
     private fun initInput() {
@@ -48,9 +60,11 @@ class QuestionSearchActivity : AppCompatActivity() {
     }
 
     private fun initAdapter() {
-        val adapterx = QuestionSearchAdapter {
+        val adapterx = QuestionSearchAdapter({
             viewModel.retry()
-        }
+        }, { it ->
+            viewModel.itemClick(it)
+        })
 
         questionList.apply {
             adapter = adapterx
