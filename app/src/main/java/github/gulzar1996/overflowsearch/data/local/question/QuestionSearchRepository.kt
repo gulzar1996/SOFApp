@@ -7,9 +7,9 @@ import android.arch.paging.LivePagedListBuilder
 import android.util.Log
 import github.gulzar1996.overflowsearch.Const
 import github.gulzar1996.overflowsearch.NetworkState
-import github.gulzar1996.overflowsearch.data.Listing
-import github.gulzar1996.overflowsearch.data.Question
-import github.gulzar1996.overflowsearch.data.QuestionSearch
+import github.gulzar1996.overflowsearch.data.model.search.Listing
+import github.gulzar1996.overflowsearch.data.model.search.Question
+import github.gulzar1996.overflowsearch.data.model.search.QuestionSearch
 import github.gulzar1996.overflowsearch.data.remote.SOFApi
 import github.gulzar1996.overflowsearch.utils.toMd5Hash
 import io.reactivex.android.schedulers.AndroidSchedulers

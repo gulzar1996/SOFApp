@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import github.gulzar1996.overflowsearch.NetworkState
 import github.gulzar1996.overflowsearch.R
-import github.gulzar1996.overflowsearch.data.Question
+import github.gulzar1996.overflowsearch.data.model.search.Question
 import github.gulzar1996.overflowsearch.ui.common.NetworkViewHolder
 
 class QuestionSearchAdapter(val retryCallback: () -> Unit)

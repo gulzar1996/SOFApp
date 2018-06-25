@@ -5,7 +5,7 @@ import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
-import github.gulzar1996.overflowsearch.data.Question
+import github.gulzar1996.overflowsearch.data.model.search.Question
 
 @Dao
 interface QuestionDao {

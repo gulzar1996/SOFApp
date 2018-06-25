@@ -3,8 +3,8 @@ package github.gulzar1996.overflowsearch.data.local.question
 import android.arch.paging.PagedList
 import android.util.Log
 import github.gulzar1996.overflowsearch.Const
-import github.gulzar1996.overflowsearch.data.Question
-import github.gulzar1996.overflowsearch.data.QuestionSearch
+import github.gulzar1996.overflowsearch.data.model.search.Question
+import github.gulzar1996.overflowsearch.data.model.search.QuestionSearch
 import github.gulzar1996.overflowsearch.data.remote.SOFApi
 import github.gulzar1996.overflowsearch.utils.PagingRequestHelper
 import github.gulzar1996.overflowsearch.utils.createStatusLiveData

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import github.gulzar1996.overflowsearch.R
-import github.gulzar1996.overflowsearch.data.Question
+import github.gulzar1996.overflowsearch.data.model.search.Question
 import kotlinx.android.synthetic.main.item_question.view.*
 
 class QuestionViewHolder(view: View) : RecyclerView.ViewHolder(view) {
