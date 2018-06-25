@@ -1,5 +1,6 @@
 package github.gulzar1996.overflowsearch.data.local.question
 
+import android.arch.lifecycle.LiveData
 import android.arch.paging.DataSource
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
@@ -20,4 +21,12 @@ interface QuestionDao {
 
     @Query("SELECT MAX(indexQ) + 1 FROM question WHERE questionQuery = :questionQuery")
     fun getNextIndexInQuestion(questionQuery: String): Int
+
+    @Query("SELECT * FROM question WHERE questionId = :questionId LIMIT 1")
+    fun getQuestion(questionId: Int): LiveData<Question>
+
+    //541661622185851c248b41bf0cea7ad0
+    @Query("SELECT * FROM question WHERE questionQuery = :questionHash LIMIT 1")
+    fun getQuestionbyHash(questionHash: String): LiveData<Question>
+
 }
