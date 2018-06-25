@@ -27,7 +27,6 @@ class QuestionSearchBoundaryCallback(private val questionQuery: String,
 
     override fun onZeroItemsLoaded() {
         Log.i("onZeroItemsLoaded", "called")
-
         helper.runIfNotRunning(PagingRequestHelper.RequestType.INITIAL) {
             sofApi.questionSearch(
                     page = Const.INITIAL_PAGE,
@@ -38,12 +37,17 @@ class QuestionSearchBoundaryCallback(private val questionQuery: String,
                     site = Const.SITE
             ).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
+
                     .subscribe({ resp ->
                         //If empty list is found in the first load show approprate result
-                        if (resp.isSuccessful && resp.body()!!.questions.isEmpty())
-                            failedWebService(it, Exception("$questionQuery Not Found"))
-                        else
-                            successfulWebservice(it, resp, pageCount = Const.INITIAL_PAGE.toInt())
+                        if (resp.isSuccessful) {
+                            if (resp.body()!!.questions.isEmpty())
+                                failedWebService(it, Exception("$questionQuery Not Found"))
+                            else
+                                successfulWebservice(it, resp, pageCount = Const.INITIAL_PAGE.toInt())
+                        } else
+                            failedWebService(it, Exception("Rate Limited"))
+
                     }, { t ->
                         failedWebService(it, t)
                     })
@@ -89,7 +93,12 @@ class QuestionSearchBoundaryCallback(private val questionQuery: String,
 
     private fun successfulWebservice(it: PagingRequestHelper.Request.Callback, response: Response<QuestionSearch>
                                      , pageCount: Int) {
-        if (response.isSuccessful) insertItemsIntoDb(response, it, pageCount) else it.recordFailure(Exception())
+        if (response.isSuccessful) {
+            if (!response.body()!!.questions.isEmpty())
+                insertItemsIntoDb(response, it, pageCount)
+            else
+                it.recordFailure(Exception())
+        } else it.recordFailure(Exception())
     }
 
     private fun failedWebService(it: PagingRequestHelper.Request.Callback, t: Throwable) {
