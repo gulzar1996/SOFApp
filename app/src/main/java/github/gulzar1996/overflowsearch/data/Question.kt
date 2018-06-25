@@ -13,7 +13,7 @@ data class Question(
         @SerializedName("view_count") var viewCount: Int = 0,
         @SerializedName("answer_count") var answerCount: Int = 0,
         @SerializedName("score") var score: Int = 0,
-        @SerializedName("creation_date") var creationDate: Int = 0,
+        @SerializedName("creation_date") var creationDate: Long = 0,
         @SerializedName("question_id") var questionId: Int = 0,
         @SerializedName("link") var link: String? = null,
         @SerializedName("title") var title: String? = null
@@ -38,7 +38,7 @@ data class Question(
      * All the object should be appended with hasMore which is used during boundary call back
      */
     var hasMore: Boolean = false
-    var nextPage: Int = 0
+    var currentPage: Int = -1
     /**
      * Since its not wise to store the Author object in Sql
      * Resolve it and store as string so that it is visible in a single question query
