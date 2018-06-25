@@ -6,6 +6,7 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import github.gulzar1996.overflowsearch.Const
+import github.gulzar1996.overflowsearch.data.local.answer.AnswerRepository
 import github.gulzar1996.overflowsearch.data.local.question.AppDatabase
 import github.gulzar1996.overflowsearch.data.local.question.QuestionSearchRepository
 import github.gulzar1996.overflowsearch.data.remote.SOFApi
@@ -55,42 +56,11 @@ class AppModule {
     @Provides
     fun provideQuestionSearchRepo(db: AppDatabase, sofApi: SOFApi, ioExecutor: Executor) =
             QuestionSearchRepository(db, sofApi, ioExecutor)
-//
-//
-//    @Provides
-//    @Singleton
-//    internal fun provideAnswerRepository(appDatabase: AppDatabase): AnswerRepository =
-//            AnswerRepository(appDatabase.answerDao())
-//
-//    @Provides
-//    @Singleton
-//    internal fun providesAnswerDao(appDatabase: AppDatabase): AnswerDao = appDatabase.answerDao()
-//
-//    @Provides
-//    @Singleton
-//    internal fun provideUserRepository(appDatabase: AppDatabase): UserRepository =
-//            UserRepository(appDatabase.userDao())
-//
-//    @Provides
-//    @Singleton
-//    internal fun providesUserDao(appDatabase: AppDatabase): UserDao = appDatabase.userDao()
-//
-//    @Provides
-//    @Singleton
-//    internal fun provideQuestionRepository(appDatabase: AppDatabase): QuestionRepository =
-//            QuestionRepository(appDatabase.questionDao())
-//
-//    @Provides
-//    @Singleton
-//    internal fun providesQuestionDao(appDatabase: AppDatabase): QuestionDao = appDatabase.questionDao()
 
-    /**
-     * Shared Preferences
-     */
+    @Provides
+    fun provideAnserRepo(db: AppDatabase, sofApi: SOFApi, ioExecutor: Executor) =
+            AnswerRepository(db, sofApi, ioExecutor)
 
-    /**
-     * Rx
-     */
 
     @Provides
     fun provideCompositeDisposable(): CompositeDisposable = CompositeDisposable()
