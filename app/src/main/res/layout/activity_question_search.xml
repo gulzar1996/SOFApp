@@ -38,12 +38,12 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:clickable="true"
                     android:id="@+id/search"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_marginTop="16dp"
+                    android:clickable="true"
                     app:layout_constraintDimensionRatio="w,1:1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/queryInput"
